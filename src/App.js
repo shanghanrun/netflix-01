@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Routes, Route} from 'react-router-dom'
+import AppLayout from './layout/AppLayout'
+import AdminLayout from './layout/AdminLayout'
+import HomePage from './pages/HomePage/HomePage';
+import Movies from './pages/Movies/Movies';
+import MovieDetail from './pages/MovieDetail/MovieDetail';
+import NotFound from './pages/NotFound/NotFound';
+
+//홈페이지    /
+//영화전체 보여주는 페이지(서치)   /movies
+//영화디테일 페이지    /movies/:id
+//추천영화 /movies/:id/recommendation
+//리뷰 /movies/:id/reviews
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<AppLayout/>}>
+        <Route index element={<HomePage/>} />
+        <Route path='movies'>
+          <Route index element={<Movies/>} />
+          <Route path=':id' element={<MovieDetail/>} />
+        </Route>
+      </Route> 
+      <Route path='/admin' element={<AdminLayout/>} />
+      <Route path='*' element={<NotFound />} />
+    </Routes>
   );
 }
 
