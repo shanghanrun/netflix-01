@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const token=process.env.REACT_APP_ACCESS_TOKEN
-const apiKey =process.env.REACT_APP_API_KEY
+// const apiKey =process.env.REACT_APP_API_KEY
 
 console.log('accessToken2: ', token)
 const api = axios.create({

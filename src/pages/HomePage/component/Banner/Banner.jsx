@@ -18,7 +18,7 @@ const Banner = () => {
   }
   // data가 받아졌다면
   let poster_path = data?.results[0].poster_path  //첫번째 영화데이터
-  let imagePath = `https://image.tmdb.org/t/p/w500/${poster_path}` //작은화면
+  // let imagePath = `https://image.tmdb.org/t/p/w500/${poster_path}` //작은화면
   let imagePath2 =`https://www.themoviedb.org/t/p/w1066_and_h600_bestv2${poster_path}`
   return (
     <div style={{
