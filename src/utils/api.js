@@ -1,12 +1,14 @@
 import axios from 'axios'
 
-const Access_Token=process.env.Access_Token
+const token=process.env.REACT_APP_ACCESS_TOKEN
+const apiKey =process.env.REACT_APP_API_KEY
 
+console.log('accessToken2: ', token)
 const api = axios.create({
 	baseURL: 'https://api.themoviedb.org/3',
 	headers: {
 		Accept: 'application/json',
-		Authorization: `Bearer ${Access_Token}`
+		Authorization: `Bearer ${token}`
 	},
 })
 
