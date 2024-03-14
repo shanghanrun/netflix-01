@@ -3,17 +3,32 @@ import './MovieCard.style.css'
 import {Badge} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { useMovieGenresQuery } from '../../hooks/useMovieGenres'
 
 
 let imagePath =`https://www.themoviedb.org/t/p/w1066_and_h600_bestv2`
 const MovieCard = ({movie}) => {
+	const {data:genreData} = useMovieGenresQuery()  //[{id: , name: }, {id:,name: }....]
+
+	const getGenreNameList=(genreIdList)=>{
+		if(!genreData){ //genreData가 도착하지 않았을 경우
+			return [];
+		}
+		const genreNameList = genreIdList.map((id)=>{
+			const genreObj = genreData.find((genre)=> genre.id === id)
+			return genreObj.name;
+		})
+		
+		return genreNameList;
+	}
+
   return (
 	<div className="movie-card" style={{backgroundImage: "url("+`${imagePath+movie.poster_path}`+")"}}>		
 	
 		<div className="overlay">
 			<h3>{movie.title}</h3>
 			<div className="underline"></div>
-			{movie.genre_ids.map((id, i)=><Badge bg="danger" key={i}>{id}</Badge>)}
+			{getGenreNameList(movie.genre_ids).map((name, i)=><Badge bg="danger" key={i}>{name}</Badge>)}
 			<div>
 				<div>
 					<Badge bg="warning" style={{color:'black'}}>IMDb</Badge>

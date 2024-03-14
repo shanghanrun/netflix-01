@@ -5,7 +5,7 @@ import {Routes, Route} from 'react-router-dom'
 import AppLayout from './layout/AppLayout'
 import AdminLayout from './layout/AdminLayout'
 import HomePage from './pages/HomePage/HomePage';
-import Movies from './pages/Movies/Movies';
+import MoviesPage from './pages/MoviesPage/MoviesPage';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import NotFound from './pages/NotFound/NotFound';
 
@@ -20,7 +20,7 @@ function App() {
       <Route path='/' element={<AppLayout/>}>
         <Route index element={<HomePage/>} />
         <Route path='movies'>
-          <Route index element={<Movies/>} />
+          <Route index element={<MoviesPage/>} />
           <Route path=':id' element={<MovieDetail/>} />
         </Route>
       </Route> 
