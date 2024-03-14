@@ -16,7 +16,7 @@ const SimilarMovies = ({id}) => {
 	}
 
   return (
-	<Container className="d-flex justify-content-center flex-wrap"> 
+	<Container className="d-flex justify-content-center flex-wrap gap-2"> 
 		{data.results.map((movie, index)=>
 			<MovieCard movie={movie} key={index} />
 		)}
