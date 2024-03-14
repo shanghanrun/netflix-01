@@ -4,9 +4,11 @@ import {Badge} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import { useMovieGenresQuery } from '../../hooks/useMovieGenres'
+import { useNavigate} from 'react-router-dom'
 
 
 let imagePath =`https://www.themoviedb.org/t/p/w1066_and_h600_bestv2`
+
 const MovieCard = ({movie}) => {
 	const {data:genreData} = useMovieGenresQuery()  //[{id: , name: }, {id:,name: }....]
 
@@ -21,9 +23,15 @@ const MovieCard = ({movie}) => {
 		
 		return genreNameList;
 	}
+	const navigate = useNavigate()
+	const gotoDetail=(movieId)=>{
+		navigate(`/movies/${movieId}`)
+	}
 
   return (
-	<div className="movie-card" style={{backgroundImage: "url("+`${imagePath+movie.poster_path}`+")"}}>		
+	<div className="movie-card" style={{backgroundImage: "url("+`${imagePath+movie.poster_path}`+")"}}
+		onClick={()=>gotoDetail(movie.id)}
+	>		
 	
 		<div className="overlay">
 			<h3>{movie.title}</h3>
