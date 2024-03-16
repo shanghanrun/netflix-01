@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useSearchMoviesQuery } from '../../hooks/useSearchMovies';
 import { Alert } from 'react-bootstrap';
@@ -7,6 +7,9 @@ import { responsive } from '../../common/constants/responsive';
 import {Container, Row, Col} from 'react-bootstrap';
 import MovieCard from '../../common/MovieCard/MovieCard';
 import ReactPaginate from 'react-paginate';
+import SortDropdown from './SortDropdown';
+import FilterDropdown from './FilterDropdown';
+import GenreDropdown from './GenreDropdown';
 
 // 경로 2가지
 // nav바에서 온 경우 => popularMovie 보여주기
@@ -17,17 +20,23 @@ import ReactPaginate from 'react-paginate';
 //페이지네이션 클릭할 때마다 page바꿔주기
 // page값이 바뀔 때마다 useSearchMovie에 page까지 넣어서 fetch
 
+
 const MoviesPage = () => {
   const [query, setQuery]= useSearchParams();
   const keyword = query.get('q')
   const [page, setPage] =useState(1);
+  const [movies, setMovies] =useState([])
+
   const handlePageClick=({selected})=>{
     setPage(selected +1)
-
   }
   const {data,isLoading, isError,error} = useSearchMoviesQuery({keyword, page});
   console.log('searched data :', data);
-
+  useEffect(() => {
+    if (data) {
+      setMovies(data.results);
+    }
+  }, [data]);
   
 
   if(isLoading){
@@ -42,10 +51,14 @@ const MoviesPage = () => {
 	// </div>
   <Container style={{color:'white'}}>
     <Row>
-      <Col lg={4} xs={12}>{" "}필터{" "}</Col>
+      <Col lg={4} xs={12}>
+        <SortDropdown movies={movies} setMovies={setMovies}/>
+        <FilterDropdown movies={movies} setMovies={setMovies}/>
+        <GenreDropdown movies={movies} setMovies={setMovies}/>
+      </Col>
       <Col lg={8} xs={12}>
         <Row>  
-          {data?.results.map((movie, index)=>
+          {movies.map((movie, index)=>
             <Col key={index} lg={4} xs={12}>
               <MovieCard movie={movie} />
             </Col>
