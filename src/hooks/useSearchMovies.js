@@ -6,16 +6,18 @@ const fetchSearchMovies = ({ keyword, page }) => {
     ? api.get(`search/movie?query=${keyword}&page=${page}`)
     : api.get(`movie/popular?page=${page}`);
 };
+function processData(result){
+  const totalPages = result.data.total_pages;
+  const movies = result.data.results;
+  const ids = result.data.results.map(movie => movie.id)
+  return {totalPages, movies, ids};
+}
 
 export const useSearchMoviesQuery = ({ keyword, page }) => {
   return useQuery({
     queryKey: ['movie-search', keyword, page],
     queryFn: () => fetchSearchMovies({ keyword, page }),
-    select: (result) =>result.data, 
-	// ({
-    //   movies: result.data.results,
-    //   ids: result.data.results.map(movie => movie.id)
-    // }),
-    retry: 1,
+    select: (result) => processData(result),
+	 retry: 1,
   });
-};
+}; 

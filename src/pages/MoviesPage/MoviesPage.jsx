@@ -33,13 +33,12 @@ const MoviesPage = () => {
   }
   const {data,isLoading, isError,error} = useSearchMoviesQuery({keyword, page});
   console.log('searched data :', data);
-  // console.log('ids :', data.ids)
-  // console.log('totalPages:', data.totalPages)
-  // const {ids} = useSearchMoviesIdsQuery({keyword, page})
-  // console.log('search Movies ids :', ids)
+  console.log('total pages : ', data.totalPages)
+  console.log('movies : ', data.movies)
+  console.log('ids :', data.ids)
   useEffect(() => {
     if (data) {
-      setMovies(data.results);
+      setMovies(data.movies);
     }
   }, [data]);
   

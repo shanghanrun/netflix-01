@@ -1,0 +1,20 @@
+{
+	"total_pages": 50,
+	"movies":[
+		{
+			"adult":false,
+			"genre_ids":[14,12,18],
+			"id": 763215,
+			"title":"Damsel",
+			"overview": "A young woman...",
+			"popularity": 2754.204,
+			"poster_path":"/....",
+			"released_date": "2024-03-08",
+			"vote_average": 7.8,
+			"vote_count": 764
+		}, 
+		{},
+		{}
+	]
+	
+}
