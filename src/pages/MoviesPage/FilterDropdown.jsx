@@ -1,5 +1,6 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import YearFilter from './YearFilter';
 
 const genres = [
   'Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama',
@@ -15,8 +16,10 @@ function FilterDropdown({ movies, setMovies }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Year Filter</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">IMDB Score Filter</Dropdown.Item>
+        <Dropdown.Item >
+          <YearFilter movies={movies} setMovies={setMovies} />
+        </Dropdown.Item>
+        <Dropdown.Item >IMDB Score Filter</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
