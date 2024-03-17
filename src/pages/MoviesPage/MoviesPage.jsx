@@ -10,6 +10,7 @@ import ReactPaginate from 'react-paginate';
 import SortDropdown from './SortDropdown';
 import FilterDropdown from './FilterDropdown';
 import GenreDropdown from './GenreDropdown';
+import { useSearchMoviesIdsQuery } from '../../hooks/useSearchMoviesIds';
 
 // 경로 2가지
 // nav바에서 온 경우 => popularMovie 보여주기
@@ -32,6 +33,10 @@ const MoviesPage = () => {
   }
   const {data,isLoading, isError,error} = useSearchMoviesQuery({keyword, page});
   console.log('searched data :', data);
+  // console.log('ids :', data.ids)
+  // console.log('totalPages:', data.totalPages)
+  // const {ids} = useSearchMoviesIdsQuery({keyword, page})
+  // console.log('search Movies ids :', ids)
   useEffect(() => {
     if (data) {
       setMovies(data.results);
@@ -69,7 +74,7 @@ const MoviesPage = () => {
           onPageChange={handlePageClick}
           pageRangeDisplayed={3}
           marginPagesDisplayed={2}
-          pageCount={data?.total_pages}  //데이터의 토탈페이지
+          pageCount={data?.totalPages}  //데이터의 토탈페이지
           previousLabel="< previous"
           pageClassName="page-item"
           pageLinkClassName="page-link"

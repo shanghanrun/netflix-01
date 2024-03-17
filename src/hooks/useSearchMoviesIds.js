@@ -7,15 +7,11 @@ const fetchSearchMovies = ({ keyword, page }) => {
     : api.get(`movie/popular?page=${page}`);
 };
 
-export const useSearchMoviesQuery = ({ keyword, page }) => {
+export const useSearchMoviesIdsQuery = ({ keyword, page }) => {
   return useQuery({
-    queryKey: ['movie-search', keyword, page],
+    queryKey: ['movieId-search', keyword, page],
     queryFn: () => fetchSearchMovies({ keyword, page }),
-    select: (result) =>result.data, 
-	// ({
-    //   movies: result.data.results,
-    //   ids: result.data.results.map(movie => movie.id)
-    // }),
+    select: (result) => result.data.results,
     retry: 1,
   });
 };
