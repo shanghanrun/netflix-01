@@ -1,21 +1,19 @@
 import React, { useState } from 'react'
 import {ProgressBar} from 'react-bootstrap'
-import './ScoreEnd.style.css'
+import './ScoreStart.style.css'
 
-const ScoreEnd = ({start, setStart}) => {
+const ScoreStart = ({setScoreStart}) => {
 	
-	const [now, setNow] = useState(10)
+	const [now, setNow] = useState(1)
 	const handleProgressChange = (newValue) => {
 		setNow(newValue);
-		setStart(newValue);
+		setScoreStart(newValue);
 	  };
   return (
 	<>
-		<div>End Score</div>
-		<ProgressBar variant="danger" now={now} label={`${now}`} min="0"
-			max="10"/>
-		<input
-			className="input-range"
+		<div>Start Score</div>
+		<ProgressBar variant="danger" now={now} label={`${now}`} min="0" max="10"/>
+		<input className='input-range'
 			type="range"
 			min="0"
 			max="10"
@@ -26,4 +24,4 @@ const ScoreEnd = ({start, setStart}) => {
   )
 }
 
-export default ScoreEnd;
+export default ScoreStart;

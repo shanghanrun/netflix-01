@@ -1,9 +1,11 @@
-import { useState } from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
 
-function SortDropdown({ movies, setMovies }) {
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useMovieStore } from '../../store/movieStore';
+
+function SortDropdown({setMovies }) {
+  const {movieList} = useMovieStore() 
   const handleSort = (sortBy) => {
-    let sortedMovies = [...movies];
+    let sortedMovies = [...movieList];
 
     // 영화를 선택된 정렬 기준에 따라 정렬
     if (sortBy === 'Popularity(Desc)') {

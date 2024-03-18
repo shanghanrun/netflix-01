@@ -9,7 +9,8 @@ import MovieCard from '../../common/MovieCard/MovieCard';
 import ReactPaginate from 'react-paginate';
 import SortDropdown from './SortDropdown';
 import FilterDropdown from './FilterDropdown';
-// import GenreDropdown from './GenreDropdown';
+import GenreDropdown from './GenreDropdown';
+import { useMovieStore } from '../../store/movieStore';
 // import { useSearchMoviesIdsQuery } from '../../hooks/useSearchMoviesIds';
 
 // 경로 2가지
@@ -22,24 +23,50 @@ import FilterDropdown from './FilterDropdown';
 // page값이 바뀔 때마다 useSearchMovie에 page까지 넣어서 fetch
 
 
+
 const MoviesPage = () => {
   const [query, setQuery]= useSearchParams();
   const keyword = query.get('q')
   const [page, setPage] =useState(1);
   const [movies, setMovies] =useState([])
+  const [yearStart, setYearStart] = useState(2001)
+	const [yearEnd, setYearEnd] = useState(2024)
+  const [scoreStart, setScoreStart] = useState(2001)
+	const [scoreEnd, setScoreEnd] = useState(2024)
+
+  const {movieList, setMovieList} = useMovieStore();
 
   const handlePageClick=({selected})=>{
     setPage(selected +1)
   }
+
+  function filterMovies(){
+		console.log('year Start: ', yearStart)
+		console.log('year End:', yearEnd)
+		console.log('score Start: ', scoreStart)
+		console.log('score End:', scoreEnd)
+		const newList = movieList.filter(movie => {
+			const movieYear = new Date(movie.release_date).getFullYear();
+      const movieScore = movie.vote_average;
+			return movieYear >=yearStart && movieYear<= yearEnd 
+             && movieScore >=scoreStart && movieScore <= scoreEnd ;
+			})
+			console.log('filtered Movie:', newList)
+		return newList
+	}
+	
   const {data,isLoading, isError,error} = useSearchMoviesQuery({keyword, page});
   console.log('searched data :', data);
 
   useEffect(() => {
     if (data) {
+      setMovieList(data.results)
       setMovies(data.results);
     }
   }, [data]);
-  
+  useEffect(()=>{
+		setMovies(filterMovies())
+	},[yearStart, yearEnd, scoreStart, scoreEnd])
 
   if(isLoading){
 		return <h1>Loading...</h1>
@@ -54,9 +81,14 @@ const MoviesPage = () => {
   <Container style={{color:'white'}}>
     <Row>
       <Col lg={4} xs={12}>
-        <SortDropdown movies={movies} setMovies={setMovies}/>
-        <FilterDropdown movies={movies} setMovies={setMovies}/>
-        {/* <GenreDropdown movies={movies} setMovies={setMovies}/> */}
+        <SortDropdown setMovies={setMovies}/>
+        <FilterDropdown 
+          setYearStart={setYearStart}
+          setYearEnd={setYearEnd}
+          setScoreStart={setScoreStart}
+          setScoreEnd={setScoreEnd}
+          />
+        <GenreDropdown setMovies={setMovies}/>
       </Col>
       <Col lg={8} xs={12}>
         <Row>  

@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import {ProgressBar} from 'react-bootstrap'
 
-const YearEnd = ({end, setEnd}) => {
-	
-	const [now, setNow] = useState(2024)
+const YearStart = ({setYearStart}) => {
+	const [now, setNow] = useState(2012)
 	const handleProgressChange = (newValue) => {
 		setNow(newValue);
-		setEnd(newValue);
+		setYearStart(newValue);
 	  };
   return (
 	<>
-		<div> End Year</div>
-		<ProgressBar now={now} label={`${now}`} min="2001"
-			max="2024"/>
+		<div>Start Year</div>
+		<ProgressBar now={now} label={`${now}`} min="2001" max="2024"/>
 		<input
 			type="range"
 			min="2001"
@@ -24,4 +22,4 @@ const YearEnd = ({end, setEnd}) => {
   )
 }
 
-export default YearEnd;
+export default YearStart;

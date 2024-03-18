@@ -1,11 +1,15 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
-
+import { useMovieStore } from '../../store/movieStore';
 import { genres } from '../../common/constants/genres';
 
+
 function GenreDropdown({ movies, setMovies }) {
+  const {movieList} = useMovieStore() 
+
   function filterByGenre(id){
-    const results = movies.filter(movie => movie.genre_ids.includes(id))
+    console.log('genre id: ', id)
+    const results = movieList.filter(movie => movie.genre_ids.includes(id))
     setMovies(results)
   }
   return (
@@ -16,10 +20,10 @@ function GenreDropdown({ movies, setMovies }) {
 
       <Dropdown.Menu>
               {/* {genres.map((genre, index) => (
-                <Button key={index} variant="outline-secondary" size="sm">{genre.name}</Button>
+                <Button key={index} variant="primary" size="sm">{genre.name}</Button>
               ))} */}
               {genres.map((genre, index) => (
-                <Button onClick={filterByGenre(genres.id)} key={index} variant="outline-secondary" size="sm">{genre.name}</Button>
+                <Button onClick={()=>filterByGenre(genre.id)} key={index} >{genre.name}</Button>
               ))}
         </Dropdown.Menu>
     </Dropdown>
