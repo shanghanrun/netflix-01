@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useSearchMoviesQuery } from '../../hooks/useSearchMovies';
 import { Alert } from 'react-bootstrap';
-import MovieSlider from '../../common/MovieSlider/MovieSlider';
-import { responsive } from '../../common/constants/responsive';
+// import MovieSlider from '../../common/MovieSlider/MovieSlider';
+// import { responsive } from '../../common/constants/responsive';
 import {Container, Row, Col} from 'react-bootstrap';
 import MovieCard from '../../common/MovieCard/MovieCard';
 import ReactPaginate from 'react-paginate';
 import SortDropdown from './SortDropdown';
 import FilterDropdown from './FilterDropdown';
-import GenreDropdown from './GenreDropdown';
-import { useSearchMoviesIdsQuery } from '../../hooks/useSearchMoviesIds';
+// import GenreDropdown from './GenreDropdown';
+// import { useSearchMoviesIdsQuery } from '../../hooks/useSearchMoviesIds';
 
 // 경로 2가지
 // nav바에서 온 경우 => popularMovie 보여주기
@@ -33,12 +33,10 @@ const MoviesPage = () => {
   }
   const {data,isLoading, isError,error} = useSearchMoviesQuery({keyword, page});
   console.log('searched data :', data);
-  console.log('total pages : ', data.totalPages)
-  console.log('movies : ', data.movies)
-  console.log('ids :', data.ids)
+
   useEffect(() => {
     if (data) {
-      setMovies(data.movies);
+      setMovies(data.results);
     }
   }, [data]);
   
@@ -58,7 +56,7 @@ const MoviesPage = () => {
       <Col lg={4} xs={12}>
         <SortDropdown movies={movies} setMovies={setMovies}/>
         <FilterDropdown movies={movies} setMovies={setMovies}/>
-        <GenreDropdown movies={movies} setMovies={setMovies}/>
+        {/* <GenreDropdown movies={movies} setMovies={setMovies}/> */}
       </Col>
       <Col lg={8} xs={12}>
         <Row>  
@@ -73,7 +71,7 @@ const MoviesPage = () => {
           onPageChange={handlePageClick}
           pageRangeDisplayed={3}
           marginPagesDisplayed={2}
-          pageCount={data?.totalPages}  //데이터의 토탈페이지
+          pageCount={data.total_pages}  //데이터의 토탈페이지
           previousLabel="< previous"
           pageClassName="page-item"
           pageLinkClassName="page-link"

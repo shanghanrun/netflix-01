@@ -1,32 +1,26 @@
 import React, { useState } from 'react'
-import InputRange from 'react-input-range';  // 버전이 안맞는 문제..
+import YearStart from '../HomePage/component/progressbar/YearStart'
+import YearEnd from '../HomePage/component/progressbar/YearEnd'
+import ScoreStart from '../HomePage/component/progressbar/ScoreStart'
+import ScoreEnd from '../HomePage/component/progressbar/ScoreEnd'
 
 const YearFilter = ({movies, setMovies}) => {
-	const [value, setValue] = useState({min:1990, max:2024})
-	function handleChange(value){
-		setValue({value})
-		console.log(value);
-		//여기에 filterMoviesByYear()를 하게 되면, setValue가 비동기적으로 되어서 제대로 안됨...
-	}
-	function filterMoviesByYear(movies, startYear, endYear){
-		const filteredMovies = movies.filter(movie =>{
-			const releaseYear = new Date(movie.release_date).getFullYear();
-			return releaseYear >= startYear && releaseYear <= endYear;
-		})
-		return filteredMovies;
-	}
-  return (
-	<>
-		<form className="form">
-			<InputRange
-				draggableTrack
-				maxValue={2024}
-				minValue={1990}
-				onChange={value => handleChange(value)}
-				value ={value} />
-		</form>
-	</>
-  )
+	const [start, setStart] = useState(2001)
+	const [end, setEnd] = useState(2024)
+
+	
+	return(
+		<>
+			<div>
+				<YearStart now={start} setStart={setStart}/>
+				<YearEnd now={end}  setEnd={setEnd}/>
+			</div>
+			<div>
+				<ScoreStart now={start} setStart={setStart} />
+				<ScoreEnd now={end} setStart={setStart} />
+			</div>
+		</>
+	)
 }
 
 export default YearFilter
