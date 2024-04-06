@@ -20,7 +20,8 @@ const AppLayout = () => {
 		<Navbar  expand="lg" >
 			<Container fluid>
 			<Navbar.Brand href="/">
-				<img src="https://tse1.mm.bing.net/th?id=OIF.WMiyESczJVY2ycjUIA0TzQ&pid=Api&P=0&h=220" width={150} height={60} alt="로고" />
+				<img src="netflix.webp" width={150} height={60} alt="로고" />
+				{/* <img src="https://tse1.mm.bing.net/th?id=OIF.WMiyESczJVY2ycjUIA0TzQ&pid=Api&P=0&h=220" width={150} height={60} alt="로고" /> */}
 			</Navbar.Brand>
 			<Navbar.Toggle aria-controls="navbarScroll" />
 			<Navbar.Collapse  id="navbarScroll">
