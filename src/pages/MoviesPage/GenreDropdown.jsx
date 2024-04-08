@@ -4,7 +4,7 @@ import { useMovieStore } from '../../store/movieStore';
 import { genres } from '../../common/constants/genres';
 
 
-function GenreDropdown({ movies, setMovies }) {
+function GenreDropdown({setMovies }) {
   const {movieList} = useMovieStore() 
 
   function filterByGenre(id){
