@@ -10,7 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import './MovieDetail.style.css'
 
-let imagePath =`https://www.themoviedb.org/t/p/w1066_and_h600_bestv2`
+// let imagePath =`https://www.themoviedb.org/t/p/w1066_and_h600_bestv2`
+let imagePath =`https://image.tmdb.org/t/p/original`
 
 const MovieDetail = () => {
   const {id} = useParams()
@@ -39,7 +40,7 @@ const MovieDetail = () => {
         <Row>
           <Col lg={6} xs={12}>
             <div>
-              <img src={imagePath+data.poster_path} width={600} alt=''/>
+              <img src={imagePath+data.backdrop_path} width={600} alt=''/>
             </div>
           </Col>
           <Col lg={6} xs={12} style={{}}>
