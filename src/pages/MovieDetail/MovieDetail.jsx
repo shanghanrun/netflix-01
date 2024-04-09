@@ -5,6 +5,7 @@ import { useDetailMovieQuery } from '../../hooks/useDetailMovie';
 import Reviews from './Reviews/Reviews';
 import SimilarMovies from './SimilarMovies/SimilarMovies';
 import Recommendations from './Recommendations/Recommendations';
+import Video from './Video/Video';
 
 let imagePath =`https://www.themoviedb.org/t/p/w1066_and_h600_bestv2`
 
@@ -67,6 +68,16 @@ const MovieDetail = () => {
         </div>
         <div>
           <Reviews id={id} />
+        </div>
+      </Container>
+      <Container className="video-area">
+        <div>
+          <h3 style={{border: '2px solid red', borderRadius: '5px', padding:'10px', marginTop:'20px'}}
+          >
+            Video</h3>
+        </div>
+        <div>
+          <Video id={id} />
         </div>
       </Container>
     </div>

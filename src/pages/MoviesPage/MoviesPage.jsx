@@ -11,6 +11,7 @@ import SortDropdown from './SortDropdown';
 import FilterDropdown from './FilterDropdown';
 import GenreDropdown from './GenreDropdown';
 import { useMovieStore } from '../../store/movieStore';
+import './MoviePage.style.css'
 // import { useSearchMoviesIdsQuery } from '../../hooks/useSearchMoviesIds';
 
 // 경로 2가지
@@ -80,7 +81,7 @@ const MoviesPage = () => {
 	// </div>
   <Container style={{color:'white'}}>
     <Row>
-      <Col lg={4} xs={12} style={{border: '1px solid red', borderRadius:'10px'}}>
+      <Col lg={4} xs={12} style={{border: '2px solid red', borderRadius:'10px'}}>
         <div style={{margin:"10px 0"}}>필터</div>
         <SortDropdown setMovies={setMovies}/>
         <FilterDropdown 
