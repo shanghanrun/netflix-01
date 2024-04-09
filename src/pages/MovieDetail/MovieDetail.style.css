@@ -1,0 +1,12 @@
+.similar,
+.recommendations {
+	transition: all 0.2s;
+}
+
+.similar:hover {
+	transform: scale(1.15)
+}
+
+.recommendations:hover {
+	transform: scale(1.1)
+}

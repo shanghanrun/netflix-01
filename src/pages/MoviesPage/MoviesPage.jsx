@@ -11,7 +11,7 @@ import SortDropdown from './SortDropdown';
 import FilterDropdown from './FilterDropdown';
 import GenreDropdown from './GenreDropdown';
 import { useMovieStore } from '../../store/movieStore';
-import './MoviePage.style.css'
+import './MoviesPage.style.css'
 // import { useSearchMoviesIdsQuery } from '../../hooks/useSearchMoviesIds';
 
 // 경로 2가지
