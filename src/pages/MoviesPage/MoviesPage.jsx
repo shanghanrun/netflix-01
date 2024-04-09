@@ -80,7 +80,8 @@ const MoviesPage = () => {
 	// </div>
   <Container style={{color:'white'}}>
     <Row>
-      <Col lg={4} xs={12}>
+      <Col lg={4} xs={12} style={{border: '1px solid red', borderRadius:'10px'}}>
+        <div style={{margin:"10px 0"}}>필터</div>
         <SortDropdown setMovies={setMovies}/>
         <FilterDropdown 
           setYearStart={setYearStart}

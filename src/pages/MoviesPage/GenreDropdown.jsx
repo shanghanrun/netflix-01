@@ -18,12 +18,13 @@ function GenreDropdown({setMovies }) {
         Genres
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu style={{background: '#211e1e'}}>
               {/* {genres.map((genre, index) => (
                 <Button key={index} variant="primary" size="sm">{genre.name}</Button>
               ))} */}
               {genres.map((genre, index) => (
-                <Button onClick={()=>filterByGenre(genre.id)} key={index} >{genre.name}</Button>
+                <Button style={{marginRight:"3px", marginBottom:"3px" }}  
+                  onClick={()=>filterByGenre(genre.id)} key={index} >{genre.name}</Button>
               ))}
         </Dropdown.Menu>
     </Dropdown>
